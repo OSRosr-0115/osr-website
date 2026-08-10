@@ -1,0 +1,11 @@
+{
+  "title": "株式会社OSR｜原状回復・リフォーム｜",
+  "description": "This web application enables businesses to create and manage their company websites easily, enhancing online presence and customer engagement.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
