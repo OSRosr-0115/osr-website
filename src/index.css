@@ -41,6 +41,31 @@ body {
   to   { transform: translateX(-50%); }
 }
 
+.osr-marquee {
+  display: flex;
+  width: max-content;
+  animation: osrMarquee 18s linear infinite;
+}
+
+.osr-marquee span {
+  flex-shrink: 0;
+  white-space: nowrap;
+  color: #07152f;
+  font-family:"Yu Mincho","Hiragino Mincho ProN", serif;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding-right: 40px;
+}
+
+@keyframes osrMarquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
 .anim-fadeup   { animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
 .anim-fadein   { animation: fadeIn 1.2s ease forwards; }
 .anim-delay-1  { animation-delay: 0.15s; }
