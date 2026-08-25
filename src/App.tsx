@@ -1231,7 +1231,7 @@ export default function App() {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-8 lg:px-16 pb-24 lg:pb-32">
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-5 lg:px-16 pb-24 lg:pb-32">
           <p
             className="text-xs tracking-[.35em] mb-6"
             style={{ color: GOLD }}
@@ -1240,7 +1240,7 @@ export default function App() {
           </p>
 
           <h1
-            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight"
+            className="text-3xl sm:text-4xl lg:text-7xl font-bold text-white leading-tight"
           >
             {t.hero1}
             <br />
