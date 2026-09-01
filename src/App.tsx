@@ -14,6 +14,7 @@ import before3 from './image10.jpg'
 import after1 from './image11.jpg'
 import after2 from './image31.jpeg'
 import before4 from './image30.jpeg'
+import areaMap from "./area-map.png";
 
 const NAVY = '#0d1f35'
 const NAVY2 = '#162d47'
@@ -118,7 +119,7 @@ function SectionHead({
       </Reveal>
 
       <div
-        className="mt-5 w-12 h-px"
+        className="mt-5 w-48 h-px"
         style={{
           background: `linear-gradient(90deg, ${GOLD}, ${GOLD2})`,
         }}
@@ -136,7 +137,7 @@ const TEXT = {
       '代表取締役メッセージ',
       '企業理念・使命',
       'お知らせ',
-      '求人',
+      '採用情報',
       '事業紹介',
       '対応エリア',
       '会社概要',
@@ -1000,7 +1001,9 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [language, setLanguage] = useState<Lang>('jp')
   const [heroVisible, setHeroVisible] = useState(false)
-
+const servicesReveal = useReveal(0.15)
+const worksReveal = useReveal(0.15)
+  
   const [form, setForm] = useState({
     name: '',
     company: '',
@@ -1072,9 +1075,11 @@ export default function App() {
     >
       {/* HEADER */}
       <header
-        className="fixed top-0 left-0 right-0 z-50"
+        className="fixed top-0 left-0 right-0 z-50 backgrop-blue-md"
         style={{
-          background: NAVY,
+          zIndex: 9999,
+          pointerEvents: 'auto',
+          background: 'rgba(13, 31, 53, 0.82)',
           borderBottom: scrolled
             ? `1px solid ${BORDER}`
             : '1px solid transparent',
@@ -1088,29 +1093,29 @@ export default function App() {
             className="h-14 lg:h-20 w-auto"
           />
 
-          <nav className="hidden lg:grid grid-cols-5 gap-x-5 gap-y-2 flex-1 mx-6">
-            {NAV_ITEMS.map((n) => (
-              <button
-                key={n.href}
-                type="button"
-                className="text-xs whitespace-nowrap"
-                style={{
-                  color: 'rgba(255,255,255,0.65)',
-                }}
-                onClick={() => {
-                  const target =
-                    document.getElementById(
-                      n.href.replace('#', '')
-                    )
+<nav
+  className="hidden lg:grid grid-cols-5 gap-x-5 gap-y-2 flex-1 mx-6"
+  style={{
+    position: 'relative',
+    zIndex: 10000,
+    pointerEvents: 'auto',
+  }}
+>
 
-                  target?.scrollIntoView({
-                    behavior: 'smooth',
-                  })
-                }}
-              >
-                {n.label}
-              </button>
-            ))}
+    {NAV_ITEMS.map((n) => (
+  <a
+    key={n.href}
+    href={n.href}
+    className="text-xs whitespace-nowrap"
+    style={{
+      color: 'rgba(255,255,255,0.65)',
+      cursor: 'pointer',
+    }}
+  >
+    {n.label}
+  </a>
+))}      
+           
           </nav>
 
           <div className="hidden lg:flex flex-col items-end gap-1">
@@ -1219,7 +1224,7 @@ export default function App() {
       <section className="relative min-h-screen flex items-end overflow-hidden">
         <img
           src="https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fres.cloudinary.com%2Fhlmgcqgq%2Fimage%2Fupload%2Ff_auto%2Cq_auto%2Fimage0_rjdt3v&data=05%7C02%7C%7Cc78f27792b0942f7b88c08defcf28f24%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C639226315867285052%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=x1SBxyS8x1sPGCBgs8OL1%2F9poaVb4GXfFszXt2Bsck0%3D&reserved=0"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover hero-bg-zoom"
           alt="OSR"
         />
 
@@ -1231,7 +1236,7 @@ export default function App() {
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-5 lg:px-16 pb-24 lg:pb-32">
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-5 lg:px-16 pt-16 pb-24 lg:pb-32">
           <p
             className="text-xs tracking-[.35em] mb-6"
             style={{ color: GOLD }}
@@ -1240,17 +1245,27 @@ export default function App() {
           </p>
 
           <h1
-            className="text-3xl sm:text-4xl lg:text-7xl font-bold text-white leading-tight"
-          >
-            {t.hero1}
-            <br />
-            {t.hero2}
-            <br />
+  className="text-3xl sm:text-4xl lg:text-7xl font-bold text-white leading-tight"
+>
+  <span className="hero-line hero-line-1">
+    {t.hero1}
+  </span>
 
-            <span style={{ color: GOLD2 }}>
-              {t.hero3}
-            </span>
-          </h1>
+  <br />
+
+  <span className="hero-line hero-line-2">
+    {t.hero2}
+  </span>
+
+  <br />
+
+  <span
+    className="hero-line hero-line-3"
+    style={{ color: GOLD2 }}
+  >
+    {t.hero3}
+  </span>
+</h1>
 
           <p
             className="mt-6 text-sm leading-7 break-keep"
@@ -1278,6 +1293,8 @@ export default function App() {
     overflow: "hidden",
     background: 'linear-gradient(90deg, #b88a2a, #d4af37, #b88a2a)',
     padding: "8px 0",
+    borderTop: "1px solid rgba(255,255,255,0.45)",
+    borderBottom: "1px solid rgba(255,255,255,0.45)",
   }}
 >
   <div className="osr-marquee">
@@ -1297,6 +1314,7 @@ export default function App() {
       {/* SERVICES */}
       <section
         id="services"
+        ref={servicesReveal.ref}
         className="py-24 lg:py-32"
         style={{ background: NAVY }}
       >
@@ -1319,26 +1337,44 @@ export default function App() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px">
             {SERVICE_DATA[language].map(
-              (s) => (
-                <div
-                  key={s.no}
-                  className="p-8"
-                  style={{
-                    background: NAVY2,
-                  }}
-                >
+              (s, index) => (
+
+<div
+  key={s.no}
+  className={`p-8 service-card-reveal ${
+    servicesReveal.visible ? "show" : ""
+  }`}
+  style={{
+    background: NAVY2,
+    animationDelay: `${index * 0.25}s`,
+  }}
+>
+                
                   <img
                     src={s.image}
-                    className="w-full h-40 object-cover mb-5"
+                    className="w-full h-40 object-cover mb-5 service-card-image"
                     alt={s.title}
                   />
 
-                  <p
-                    className="text-xs mb-2"
-                    style={{ color: GOLD }}
-                  >
-                    {s.no}
-                  </p>
+<div className="service-number-wrap">
+  <p
+    className="text-xs mb-2"
+    style={{ color: GOLD }}
+  >
+    {s.no}
+  </p>
+
+<div
+  className="service-number-line"
+  style={{
+    animationDelay: `${index * 0.25 + 0.6}s`,
+  }}
+/>
+
+  
+</div>
+
+  
 
                   <h3
                     className="font-bold mb-3"
@@ -1366,6 +1402,7 @@ export default function App() {
       {/* WORKS */}
       <section
         id="works"
+        ref={worksReveal.ref}
         className="py-24 lg:py-32"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -1393,39 +1430,60 @@ export default function App() {
                     borderColor: GRAY,
                   }}
                 >
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
+               
+  <div className="p-4">
 
-                    <div>
-                      <p
-                        className="text-xs font-bold mb-2"
-                        style={{ color: GOLD }}
-                      >
-                        BEFORE
-                      </p>
+<div
+  className="work-flip-card"
+  onClick={(e) => {
+    e.currentTarget.classList.toggle("is-flipped");
+  }}
+>
+  <div className="work-flip-inner">
 
-                      <img
-                        src={w.before}
-                        className="w-full aspect-[4/3] object-cover"
-                        alt="BEFORE"
-                      />
-                    </div>
+    <div className="work-flip-front relative">
+      <p
+        className="text-xs font-bold mb-2"
+        style={{ color: GOLD }}
+      >
+        BEFORE
+      </p>
 
-                    <div>
-                      <p
-                        className="text-xs font-bold mb-2"
-                        style={{ color: GOLD }}
-                      >
-                        AFTER
-                      </p>
+      <img
+        src={w.before}
+        className="w-full aspect-[4/3] object-cover"
+        alt="BEFORE"
+      />
 
-                      <img
-                        src={w.after}
-                        className="w-full aspect-[4/3] object-cover"
-                        alt="AFTER"
-                      />
-                    </div>
-                  </div>
+      <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full text-xs font-bold bg-black/65 text-white border border-white/30">
+    ↻ 
+      </div>
+    
+      </div>
 
+    <div className="work-flip-back ">
+      <p
+        className="text-xs font-bold mb-2"
+        style={{ color: GOLD }}
+      >
+        AFTER
+      </p>
+
+      <img
+        src={w.after}
+        className="w-full aspect-[4/3] object-cover"
+        alt="AFTER"
+      />
+      <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full text-xs font-bold bg-black/65 text-white border border-white/30">
+  　 ↻ 
+        </div>
+
+  </div>
+</div>
+    
+  </div>
+  </div>
+                  
                   <div className="p-5 pt-0">
                     <p
                       className="text-xs mb-2"
@@ -1485,11 +1543,26 @@ export default function App() {
               ([no, title, text]) => (
                 <div
                   key={no}
-                  className="p-7 border"
+                  className="why-card group relative overflow-hidden p-7 border transition-all duration-300 hover:-translate-y-2 hover:border-[#d6b36a] hover:shadow-[0_0_28px_rgba(214,179,106,0.28)]"
                   style={{
                     borderColor: BORDER,
                   }}
+                  onClick={(e) => {
+  e.currentTarget.classList.toggle("is-active");
+}}
                 >
+                  <div
+  className="why-big-number absolute right-4 top-1 text-[120px] leading-none font-bold transition-all duration-500 group-hover:scale-150 group-hover:-translate-y-6 group-hover:translate-x-4 group-hover:rotate-6"
+  style={{
+    color: GOLD,
+    opacity: 0.22,
+    fontFamily: "Shippori Mincho",
+    pointerEvents: "none",
+  }}
+>
+  {no}
+</div>
+                  
                   <p
                     className="text-sm font-bold mb-4"
                     style={{ color: GOLD }}
@@ -1520,27 +1593,34 @@ export default function App() {
       {/* MESSAGE */}
       <section
         id="message"
-        className="relative min-h-screen flex items-center justify-center"
+        className="message-shine relative min-h-screen"
         style={{ background: WHITE }}
       >
+       <div className="message-heading px-6 pt-10 pb-4">
+  <p
+    className="text-xs mb-2"
+    style={{ color: GOLD }}
+  >
+    MESSAGE
+  </p>
+
+  <h2
+    className="text-2xl font-bold"
+    style={{
+      color: NAVY,
+      fontFamily: "Shippori Mincho",
+    }}
+  >
+    {t.messageTitle}
+  </h2>
+</div>
         <img
           src="https://res.cloudinary.com/wngor8ac/image/upload/f_auto,q_auto/%E7%A4%BE%E9%95%B7%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8%E6%A8%AA%E9%95%B7"
-          className="absolute inset-0 w-full h-full object-contain"
+          className="message-image w-full h-auto object-contain"
           alt={t.messageTitle}
         />
 
-        <div className="absolute bottom-10 left-10">
-          <p
-            className="text-xs mb-2"
-            style={{ color: GOLD }}
-          >
-            MESSAGE
-          </p>
-
-          <h2 className="text-2xl font-bold text-white">
-            {t.messageTitle}
-          </h2>
-        </div>
+        
       </section>
 
       {/* PHILOSOPHY */}
@@ -1556,7 +1636,7 @@ export default function App() {
           />
 
           <div className="grid lg:grid-cols-2 gap-10">
-            <div className="p-8 border">
+            <div className="philosophy-card philosophy-left p-8 border">
               <p
                 className="text-xs mb-4"
                 style={{ color: GOLD }}
@@ -1572,7 +1652,7 @@ export default function App() {
               </h3>
             </div>
 
-            <div className="p-8 border">
+            <div className="philosophy-card philosophy-right p-8 border">
               <p
                 className="text-xs mb-4"
                 style={{ color: GOLD }}
@@ -1662,9 +1742,12 @@ export default function App() {
             light
           />
 
+         <div className="grid md:grid-cols-2 gap-10 items-center">
+         <div>
+          
           <h3
-            className="text-2xl font-bold mb-6"
-            style={{ color: WHITE }}
+            className="recruit-catch text-2xl font-bold mb-6"
+            style={{ color: GOLD }}
           >
             {t.recruitCatch}
           </h3>
@@ -1682,10 +1765,24 @@ export default function App() {
             <br />
             {t.recruitText3}
           </p>
+         </div>
 
+           <div className="flex justify-center md:justify-start">
+  <video
+    src="https://ycqwlzupkxiapvcznunc.supabase.co/storage/v1/object/public/osr-renovation/osr-renovation.mp4"
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="block w-full max-w-[520px] rounded-2xl"
+  />
+</div>
+
+         </div>
+          
           <a
             href="#contact"
-            className="inline-block border px-8 py-4"
+            className="inline-block border px-8 py-4 mt-8 md:mt-0"
             style={{
               borderColor: GOLD,
               color: WHITE,
@@ -1712,12 +1809,12 @@ export default function App() {
             <a
               href="https://www.osr0115.com"
               target="_blank"
-              className="p-8 border"
+              className="business-card group p-8 border overflow-hidden transition-all duration-500 hover:-translate-y-2"
             >
               <img 
                 src="https://res.cloudinary.com/wngor8ac/image/upload/f_auto,q_auto/%E9%87%8D%E9%87%8F%E9%B3%B6"
                 alt="重量鳶事業"
-                className="w-full h-55 object-cover mb-5"
+                className="w-full h-55 object-cover mb-5 transition-transform duraction-700 group-hover:scale-110"
                 />
                 <h3
                 className="font-bold mb-3"
@@ -1739,17 +1836,22 @@ export default function App() {
                 重量物・各種機械設備の搬入・据付・撤去など、培ってきた技術と経験を活かした重量工事に対応します。
                 {t.details}
               </p>
+
+             <div className="business-view">
+  VIEW SITE →
+</div> 
+
             </a>
 
             <a
               href="https://signage.osr-inc.jp"
               target="_blank"
-              className="p-8 border"
+              className="business-card group p-8 border overflow-hidden transition-all duration-500 hover:-translate-y-2"
             >
               <img
                 src="https://res.cloudinary.com/wngor8ac/image/upload/f_auto,q_auto/d829475d-22f1-490b-8c4a-2b13ede5bb18"
              alt="デジタルサイネージ事業"
-                className="w-full h-55 object-cover mb-5"
+                className="w-full h-55 object-cover mb-5 transition-transform duration-700 group-hover:scale-110"
                 />
                 <h3
                 className="font-bold mb-3"
@@ -1765,6 +1867,9 @@ export default function App() {
                 屋内・屋外のさまざまな環境に対応したデジタルサイネージを、用途やご要望に合わせてご提案。機器選定・販売・設置・設定まで、導入をトータルでサポートし、企業や店舗の情報発信・広告・販促の新たな価値を創造します。
                 {t.details}
               </p>
+              <div className="business-view">
+  VIEW SITE →
+</div>
             </a>
             
           </div>
@@ -1918,7 +2023,7 @@ export default function App() {
           <div className="grid lg:grid-cols-2 gap-10 items-center">
 
             <p
-              className="text-sm leading-8"
+              className="area-text text-sm leading-8"
               style={{ color: MUTED }}
             >
               {t.areaText.map((line) => (
@@ -1930,8 +2035,8 @@ export default function App() {
             </p>
 
             <img
-              src="https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fres.cloudinary.com%2Fwngor8ac%2Fimage%2Fupload%2Ff_auto%2Cq_auto%2Fimage0&data=05%7C02%7C%7Cc78f27792b0942f7b88c08defcf28f24%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C639226315867463858%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=5zr04g21ppWOj41zOGdK6u%2FCDCKyajFGX1aSKe3zLPo%3D&reserved=0"
-              className="w-full max-w-md"
+              src={areaMap}
+              className="area-map w-full max-w-md"
               alt={t.areaTitle}
             />
           </div>
@@ -1956,7 +2061,7 @@ export default function App() {
               {[
                 ['会社名', '株式会社OSR'],
                 ['代表取締役', '大崎 純'],
-                ['設立', '2022年3月4日'],
+                ['設立', '2022年3月1日'],
                 ['所在地', '埼玉県春日部市豊町6丁目1-2MOTOパラダイスビル'],
                 ['TEL', '048-633-4952'],
                ['営業時間','8時～18時'],

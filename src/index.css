@@ -91,3 +91,365 @@ body {
   transform: translateY(28px);
   transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
 }
+.hero-line {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroFadeUp 1.2s ease forwards;
+}
+
+.hero-line-1 {
+  animation-delay: 0.2s;
+}
+
+.hero-line-2 {
+  animation-delay: 0.6s;
+}
+
+.hero-line-3 {
+  animation-delay: 1s;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-line-3 {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-line-3::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: heroGoldShine 3.8s ease-in-out 2s infinite;
+}
+
+@keyframes heroGoldShine {
+  0% {
+    left: -120%;
+  }
+
+  35% {
+    left: 140%;
+  }
+
+  100% {
+    left: 140%;
+  }
+}
+
+.hero-bg-zoom {
+  animation: heroBgZoom 14s ease-in-out infinite alternate;
+}
+
+@keyframes heroBgZoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.06);
+  }
+}
+
+
+
+.service-card-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.service-card-reveal.show {
+  animation: serviceCardReveal 1.2s ease forwards;
+}
+
+@keyframes serviceCardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-card-image {
+  transition: transform 0.8s ease;
+}
+
+.service-card-reveal:hover .service-card-image {
+  transform: scale(1.05);
+}
+
+.service-number-line {
+  width: 56px;
+  height: 2px;
+  margin-top: 4px;
+  margin-bottom: 14px;
+  background: linear-gradient(
+    90deg,
+    #b88a2a,
+    #d4af37,
+    #f6e3a1
+  );
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.45);
+
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.service-card-reveal.show .service-number-line {
+  animation: serviceNumberLine 1.5s ease forwards;
+}
+
+@keyframes serviceNumberLine {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+.works-before,
+.works-after {
+  opacity: 0;
+  transition:
+    opacity 1.2s ease,
+    transform 1.2s ease;
+}
+
+.works-before {
+  transform: translateX(-40px);
+}
+
+.works-after {
+  transform: translateX(40px);
+}
+
+.works-before.show,
+.works-after.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.work-flip-card {
+  perspective: 1000px;
+}
+
+.work-flip-inner {
+  position: relative;
+  width: 100%;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+}
+
+
+.work-flip-front,
+.work-flip-back {
+  backface-visibility: hidden;
+}
+
+.work-flip-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+}
+.work-flip-front .absolute,
+.work-flip-back .absolute {
+  box-shadow: 0 0 12px rgba(201, 168, 76, 0.35);
+}
+.work-flip-card.is-flipped .work-flip-inner {
+  transform: rotateY(180deg);
+}
+.message-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.message-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 220, 120, 0.15),
+    rgba(255, 245, 200, 0.75),
+    rgba(255, 220, 120, 0.15),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: messageShine 3.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 50;
+}
+
+@keyframes messageShine {
+  0% {
+    left: -50%;
+  }
+
+  60% {
+    left: 120%;
+  }
+
+  100% {
+    left: 120%;
+  }
+}
+
+.philosophy-card {
+  opacity: 0;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.philosophy-left {
+  transform: translateX(-60px);
+}
+
+.philosophy-right {
+  transform: translateX(60px);
+}
+
+#philosophy:hover .philosophy-left,
+#philosophy:hover .philosophy-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+#philosophy .grid {
+  position: relative;
+}
+
+#philosophy .grid::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 168, 76, 0.9),
+    transparent
+  );
+  transform: translateX(-50%);
+  transition: width 0.9s ease;
+}
+
+#philosophy:hover .grid::after {
+  width: 70%;
+}
+.recruit-catch {
+  opacity: 0.45;
+  transform: scale(0.75);
+  transform-origin: left center;
+  transition:
+    opacity 2s ease,
+    transform 2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    text-shadow 2s ease;
+}
+
+#recruit:hover .recruit-catch {
+  opacity: 1;
+  transform: scale(1.3);
+  text-shadow:
+    0 0 12px rgba(201, 168, 76, 0.45),
+    0 0 26px rgba(201, 168, 76, 0.22);
+}
+.business-view {
+  margin-top: 18px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: #c9a84c;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.business-card:hover .business-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.area-text {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+
+.area-map {
+  opacity: 0;
+  transform: translateX(50px) scale(0.96);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+
+#area:hover .area-text,
+#area:hover .area-map {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.area-map {
+  filter: drop-shadow(0 0 0 rgba(201, 168, 76, 0));
+}
+
+#area:hover .area-map {
+  filter:
+    drop-shadow(0 0 10px rgba(201, 168, 76, 0.35))
+    drop-shadow(0 0 22px rgba(201, 168, 76, 0.18));
+}
+
+.why-card.is-active .why-big-number {
+  transform: scale(1.5) translate(16px, -24px) rotate(6deg) !important;
+}
+
+@media (max-width: 768px) {
+  #message {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  #message .message-heading {
+    order: 1;
+  }
+
+  #message .message-image {
+    order: 2;
+  }
+}
