@@ -339,11 +339,18 @@ body {
   transform: translateX(60px);
 }
 
-#philosophy:hover .philosophy-left,
-#philosophy:hover .philosophy-right {
+
+#philosophy.is-active .philosophy-left {
   opacity: 1;
   transform: translateX(0);
 }
+
+#philosophy.is-active .philosophy-right {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.5s;
+}
+
 #philosophy .grid {
   position: relative;
 }
@@ -418,11 +425,17 @@ body {
     transform 0.9s ease;
 }
 
-#area:hover .area-text,
-#area:hover .area-map {
+#area.is-active .area-text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#area.is-active .area-map {
   opacity: 1;
   transform: translateX(0) scale(1);
+  transition-delay: 0.4s;
 }
+
 
 .area-map {
   filter: drop-shadow(0 0 0 rgba(201, 168, 76, 0));
@@ -439,6 +452,12 @@ body {
 }
 
 @media (max-width: 768px) {
+
+  .why-card.is-active .why-big-number {
+  transform: scale(1.8) translate(20px, -30px) rotate(8deg) !important;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  opacity: 1;
+}
   #message {
     display: flex;
     flex-direction: column;

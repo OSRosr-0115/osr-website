@@ -1,4 +1,4 @@
-import  { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import image6 from './image6.jpeg'
 import image7 from './image7.jpeg'
@@ -15,7 +15,8 @@ import after1 from './image11.jpg'
 import after2 from './image31.jpeg'
 import before4 from './image30.jpeg'
 import areaMap from "./area-map.png";
-
+const MICROCMS_URL = 'https://osr.microcms.io/api/v1/blogs';
+  const MICROCMS_API_KEY = '2rdpntmoIdpoM207ArHKLMWMUx7Bl6aim2O8'
 const NAVY = '#0d1f35'
 const NAVY2 = '#162d47'
 const GOLD = '#c9a84c'
@@ -133,14 +134,16 @@ const TEXT = {
     nav: [
       'サービス紹介',
       '施工実績',
-      'OSRが選ばれる6つの理由',
-      '代表取締役メッセージ',
+      'OSRが選ばれる理由',
+      '代表メッセージ',
       '企業理念・使命',
+       'ブログ',
       'お知らせ',
       '採用情報',
       '事業紹介',
       '対応エリア',
       '会社概要',
+     
     ],
 
     hero1: '原状回復工事',
@@ -242,6 +245,7 @@ const TEXT = {
       'Business',
       'Service Area',
       'Company',
+      'Blog',
     ],
 
     hero1: 'Restoration Work',
@@ -339,6 +343,7 @@ const TEXT = {
       '业务介绍',
       '服务区域',
       '公司简介',
+      '博客',
     ],
 
     hero1: '恢复原状工程',
@@ -436,6 +441,7 @@ const TEXT = {
       'Lĩnh vực kinh doanh',
       'Khu vực phục vụ',
       'Công ty',
+      'Blog',
     ],
 
     hero1: 'Khôi phục hiện trạng',
@@ -888,6 +894,31 @@ const WHY_DATA = {
 
 const NEWS_DATA = {
   jp: [
+   {
+      date: '2026.09.22',
+      cat: 'メディア掲載',
+      title: '「挑戦大陸」に代表・大崎純のインタビュー記事が掲載されました。',
+      link: 'https://note.com/chousentairiku/n/nc8320c0a11f5',
+    }, 
+{
+  date: '2026.09.07',
+  cat: 'メディア掲載',
+  title: '「NOZOKURU」に代表・大崎純のインタビュー記事が掲載されました。',
+  link: 'https://nozokuru.jp/osr-jun-osaki',
+},
+{
+  date: '2026.09.02',
+  cat: 'メディア掲載',
+  title: '「社長訪問」に代表・大崎純のインタビュー記事が掲載されました。',
+  link: 'https://note.com/shacho_homon/n/nd013a4dfb362?sub_rt=share_b&utm_source=chatgpt.com',
+},
+{
+  date: '2026.08.31',
+  cat: 'メディア掲載',
+  title: '「建設円陣PLUS」に代表・大崎純のインタビュー記事が掲載されました。',
+  link: 'https://kensetsu-engine-media.jp/interview/660770853',
+},
+
     {
       date: '2026.08.18',
       cat: '施工情報',
@@ -996,13 +1027,138 @@ const NEWS_DATA = {
   ],
 } as const
 
+// ─── Blog data ────────────────────────────────────────────────────────────────
+type BlogPost = {
+  id: number
+  title: string
+  date: string
+  category: string
+  summary: string
+  eyecatch: string
+  body: string[]
+}
+
+const BLOG_POSTS: BlogPost[] = [
+  {
+    id: 1,
+    title: '原状回復工事とは？費用・相場・注意点をわかりやすく解説',
+    date: '2026.09.01',
+    category: '原状回復',
+    summary: '賃貸物件を退去する際に必要な「原状回復工事」。費用の相場や入居者・オーナーそれぞれの負担範囲、注意すべきポイントをわかりやすく解説します。',
+    eyecatch: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=450&fit=crop&auto=format',
+    body: [
+      '原状回復工事とは、賃貸物件を退去する際に、入居前の状態に戻すために行う工事のことです。国土交通省のガイドラインでは、通常の使用による損耗や経年劣化は原則としてオーナー負担とされています。',
+      '一方、入居者の不注意や故意による損傷（タバコのヤニ汚れ、ペットによるキズなど）は入居者負担となります。退去時のトラブルを避けるためにも、入居前の状態をしっかり確認し記録しておくことが大切です。',
+      '費用の相場は物件の広さや状態によって大きく異なりますが、1Kで5〜10万円、2LDKで15〜25万円程度が目安です。株式会社OSRでは、現地調査から施工まで一貫対応し、適正価格でのお見積もりを提供しています。お気軽にご相談ください。',
+    ],
+  },
+  {
+    id: 2,
+    title: 'リフォームで資産価値UP！内装工事のポイントと事例紹介',
+    date: '2026.08.20',
+    category: 'リフォーム',
+    summary: '賃貸物件や事務所のリフォームで資産価値を高めるためのポイントを解説。クロス張り替え・床材変更・照明計画など、費用対効果の高い工事内容をご紹介します。',
+    eyecatch: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=450&fit=crop&auto=format',
+    body: [
+      'リフォームは単なる修繕ではなく、物件の資産価値を高める戦略的な投資です。特に築年数の経った賃貸物件では、適切なリフォームにより家賃アップや入居率改善が期待できます。',
+      '費用対効果が高い工事としては、クロス（壁紙）の全面張り替え、フローリングの上張り・張り替え、照明のLED化、キッチン・洗面台などの設備交換が挙げられます。',
+      'OSRでは、物件オーナー様のご要望と予算に合わせた最適なリフォームプランをご提案しています。施工実績も豊富ですので、まずはお気軽にご相談ください。',
+    ],
+  },
+  {
+    id: 3,
+    title: '退去立ち合いの流れと確認すべきポイント完全ガイド',
+    date: '2026.08.05',
+    category: '立ち合い代行',
+    summary: '賃貸退去時の立ち合いは、後々のトラブルを防ぐ重要なプロセスです。当日の流れ・確認項目・よくあるトラブルと対処法をまとめました。',
+    eyecatch: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=450&fit=crop&auto=format',
+    body: [
+      '賃貸契約終了時の退去立ち合いは、入居者とオーナー（または管理会社）が物件の状態を共同確認する重要な機会です。この場での確認内容が、原状回復費用の精算に直結します。',
+      '当日の主な確認項目は、壁・天井のキズや汚れ、床の傷や凹み、設備機器の動作確認、鍵の返却などです。気になる箇所はその場で写真を撮り、双方が署名した書面を残すことが大切です。',
+      '株式会社OSRでは、立ち合い代行サービスも承っております。専門スタッフが入居者・オーナー双方の立場を尊重しながら、スムーズな退去精算をサポートします。',
+    ],
+  },
+  {
+    id: 4,
+    title: '不用品回収・残置物撤去をスムーズに進める方法',
+    date: '2026.07.18',
+    category: '不用品回収',
+    summary: '引越しや物件整理の際に発生する不用品・残置物。処分方法の種類や費用、業者選びのポイントをわかりやすく解説します。',
+    eyecatch: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=450&fit=crop&auto=format',
+    body: [
+      '引越しや遺品整理の際に発生する大量の不用品・残置物は、自治体のゴミ収集では対応できないケースも多く、専門業者への依頼が必要になります。',
+      '業者選びのポイントとしては、①適正な許可（一般廃棄物収集運搬業許可など）を持っているか、②明確な料金体系か、③不法投棄などのリスクがないか、を確認することが重要です。',
+      'OSRでは、不用品回収・残置物撤去から原状回復工事まで一貫して対応可能です。まとめてご依頼いただくことで、費用と手間を大幅に削減できます。ぜひご相談ください。',
+    ],
+  },
+  {
+    id: 5,
+    title: 'ハウスクリーニングの種類と料金相場｜入居・退去時の清掃ガイド',
+    date: '2026.07.01',
+    category: 'クリーニング',
+    summary: '入居前・退去後のハウスクリーニングについて、種類・料金相場・業者選びのコツをご紹介。きれいな状態で入退去を迎えるためのポイントをまとめました。',
+    eyecatch: 'https://images.unsplash.com/photo-1527515637462-cff94edd56f9?w=800&h=450&fit=crop&auto=format',
+    body: [
+      'ハウスクリーニングは、日常的な掃除では落ちにくい汚れを専門機材と洗剤を使って除去するサービスです。入退去時だけでなく、定期的なメンテナンスとして利用する方も増えています。',
+      '主な清掃箇所はキッチン（油汚れ・換気扇）、浴室（水垢・カビ）、トイレ、洗面台、エアコン（フィルター・内部洗浄）などです。料金は1Kで3〜5万円、2LDKで6〜10万円が相場です。',
+      'OSRのクリーニングサービスは、原状回復工事や不用品回収とセットでご依頼いただけます。まとめてご相談いただくことで、コストパフォーマンスの高いサービスをご提供します。',
+    ],
+  },
+  {
+    id: 6,
+    title: '2026年最新版｜埼玉県の原状回復トラブル事例と対策',
+    date: '2026.06.15',
+    category: '原状回復',
+    summary: '埼玉県内で実際に発生した原状回復トラブルの事例を分析し、入居者・オーナーそれぞれが取るべき対策を解説します。地域密着型の視点でお伝えします。',
+    eyecatch: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=450&fit=crop&auto=format',
+    body: [
+      '埼玉県内では年間多くの原状回復トラブルが発生しています。よくある事例としては、「通常使用の範囲か故意の損傷かの判断をめぐる争い」「退去後の高額請求」「ガイドラインを無視した費用請求」などが挙げられます。',
+      'トラブルを防ぐために入居者が取るべき対策：入居時に傷・汚れを写真で記録する、契約書の特約事項を確認する、退去時の立ち合いに必ず参加する。',
+      'オーナーが取るべき対策：入居前チェックリストを整備する、国交省ガイドラインに沿った精算基準を設ける、信頼できる施工業者と提携する。OSRでは、適正な原状回復工事とトラブル防止のご支援をしています。',
+    ],
+  },
+]
+
 export default function App() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [language, setLanguage] = useState<Lang>('jp')
+  const [page, setPage] = useState<'home' | 'blog' | 'blog-detail'>('home')
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null)
+  const [cmsPosts, setCmsPosts] = useState<any[]>([])
+  useEffect(() => {
+  fetch(MICROCMS_URL, {
+    headers: {
+      'X-MICROCMS-API-KEY': MICROCMS_API_KEY,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error('microCMSの取得に失敗しました')
+      return res.json()
+    })
+    .then((data) => {
+setCmsPosts(
+  data.contents.map((post: any) => ({
+    ...post,
+    eyecatch:
+      typeof post.eyecatch === 'string'
+        ? post.eyecatch
+        : post.eyecatch?.url || '',
+  }))
+)
+
+      
+      console.log('microCMSの記事:', data.contents)
+    })
+    .catch((error) => {
+      console.error('microCMSエラー:', error)
+    })
+}, [])
   const [heroVisible, setHeroVisible] = useState(false)
-const servicesReveal = useReveal(0.15)
-const worksReveal = useReveal(0.15)
+  const servicesReveal = useReveal(0.15)
+  const worksReveal = useReveal(0.15)
+  const areaReveal = useReveal(0.2)
+  const philosophyReveal = useReveal(0.15)
   
   const [form, setForm] = useState({
     name: '',
@@ -1023,11 +1179,13 @@ const worksReveal = useReveal(0.15)
     { label: t.nav[2], href: '#why-osr' },
     { label: t.nav[3], href: '#message' },
     { label: t.nav[4], href: '#philosophy' },
-    { label: t.nav[5], href: '#news' },
-    { label: t.nav[6], href: '#recruit' },
-    { label: t.nav[7], href: '#business' },
-    { label: t.nav[8], href: '#area' },
-    { label: t.nav[9], href: '#about' },
+    { label: t.nav[5], href: '#blog' ,isBlog: true},
+    { label: t.nav[6], href: '#news' },
+    { label: t.nav[7], href: '#recruit' },
+    { label: t.nav[8], href: '#business' },
+    { label: t.nav[9], href: '#area' },
+    { label: t.nav[10], href: '#about' },
+   
   ]
 
   useEffect(() => {
@@ -1103,9 +1261,20 @@ const worksReveal = useReveal(0.15)
 >
 
     {NAV_ITEMS.map((n) => (
+  n.isBlog ? (
+    <button
+      key={n.href}
+      onClick={() => { setPage('blog'); setMenuOpen(false); window.scrollTo(0,0) }}
+      className="text-xs whitespace-nowrap text-left"
+      style={{ color: GOLD, cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}
+    >
+      {n.label}
+    </button>
+  ) : (
   <a
     key={n.href}
     href={n.href}
+    onClick={() => setPage('home')}
     className="text-xs whitespace-nowrap"
     style={{
       color: 'rgba(255,255,255,0.65)',
@@ -1114,6 +1283,7 @@ const worksReveal = useReveal(0.15)
   >
     {n.label}
   </a>
+  )
 ))}      
            
           </nav>
@@ -1201,6 +1371,16 @@ const worksReveal = useReveal(0.15)
             </div>
 
             {NAV_ITEMS.map((n) => (
+              n.isBlog ? (
+                <button
+                  key={n.href}
+                  className="block w-full text-left px-6 py-4 border-t text-sm"
+                  style={{ borderColor: BORDER, color: GOLD, background: 'none', border: 'none', borderTop: `1px solid ${BORDER}` }}
+                  onClick={() => { setPage('blog'); setMenuOpen(false); window.scrollTo(0,0) }}
+                >
+                  {n.label}
+                </button>
+              ) : (
               <a
                 key={n.href}
                 href={n.href}
@@ -1209,24 +1389,121 @@ const worksReveal = useReveal(0.15)
                   borderColor: BORDER,
                   color: WHITE,
                 }}
-                onClick={() =>
-                  setMenuOpen(false)
-                }
+                onClick={() => { setMenuOpen(false); setPage('home') }}
               >
                 {n.label}
               </a>
+              )
             ))}
           </div>
         )}
       </header>
 
+      {/* ── BLOG LIST ── */}
+      {page === 'blog' && (
+        <div style={{ background: OFF, minHeight: '100vh', paddingTop: '80px' }}>
+          <div className="max-w-6xl mx-auto px-6 lg:px-12 py-16">
+            <div className="mb-10">
+              <p className="text-xs tracking-[0.35em] mb-3 font-medium" style={{ fontFamily: 'Shippori Mincho', color: GOLD }}>BLOG</p>
+              <h1 className="text-3xl lg:text-4xl font-bold" style={{ fontFamily: 'Shippori Mincho', color: NAVY, letterSpacing: '0.05em' }}>ブログ</h1>
+              <div className="mt-4 w-12 h-px" style={{ background: `linear-gradient(90deg, ${GOLD}, ${GOLD2})` }} />
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {cmsPosts.map(post => (
+                <article
+                  key={post.id}
+                  className="group cursor-pointer overflow-hidden"
+                  style={{ background: WHITE, border: `1px solid ${GRAY}` }}
+                  onClick={() => { setSelectedPost(post); setPage('blog-detail'); window.scrollTo(0,0) }}
+                >
+                  <div className="overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                    <img
+                      src={post.eyecatch}
+                      alt={post.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-xs px-2 py-0.5 font-medium" style={{ background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: NAVY, fontFamily: 'Shippori Mincho' }}>{post.category?.name || ''}</span>
+                      <span className="text-xs" style={{ color: MUTED, fontFamily: 'Shippori Mincho' }}>{post.date}</span>
+                    </div>
+                    <h2 className="text-sm font-bold mb-2 leading-snug group-hover:underline" style={{ color: NAVY, textDecorationColor: GOLD }}>{post.title}</h2>
+                    <p className="text-xs leading-loose" style={{ color: MUTED, fontWeight: 300 }}>{post.summary}</p>
+                    <div className="mt-4 flex items-center gap-1 text-xs font-medium" style={{ color: GOLD }}>
+                      続きを読む
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke={GOLD} strokeWidth="1.2"/></svg>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── BLOG DETAIL ── */}
+      {page === 'blog-detail' && selectedPost && (
+        <div style={{ background: OFF, minHeight: '100vh', paddingTop: '80px' }}>
+          <div className="max-w-3xl mx-auto px-6 lg:px-12 py-16">
+            <button
+              onClick={() => { setPage('blog'); window.scrollTo(0,0) }}
+              className="flex items-center gap-2 text-xs mb-8 transition-colors duration-200"
+              style={{ color: GOLD, background: 'none', border: 'none', cursor: 'pointer' }}
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M10 6H2M5 3L2 6l3 3" stroke={GOLD} strokeWidth="1.2"/></svg>
+              ブログ一覧へ戻る
+            </button>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-xs px-2 py-0.5 font-medium" style={{ background: `linear-gradient(135deg, ${GOLD}, ${GOLD2})`, color: NAVY, fontFamily: 'Shippori Mincho' }}>{typeof selectedPost.category === 'string' ? selectedPost.category : selectedPost.category?.name || ''}</span>
+              <span className="text-xs" style={{ color: MUTED, fontFamily: 'Shippori Mincho' }}>{selectedPost.date}</span>
+            </div>
+            <h1 className="text-2xl lg:text-3xl font-bold mb-6 leading-snug" style={{ fontFamily: 'Shippori Mincho', color: NAVY, letterSpacing: '0.03em' }}>{selectedPost.title}</h1>
+            <div className="w-full overflow-hidden mb-8" style={{ aspectRatio: '16/9' }}>
+              <img src={selectedPost.eyecatch} alt={selectedPost.title} className="w-full h-full object-cover" />
+            </div>
+            <div className="space-y-5">
+              {Array.isArray(selectedPost.body)
+                ? selectedPost.body.map((para: string, i: number) => (
+                    <p key={i} className="text-sm leading-loose" style={{ color: '#333', fontWeight: 300 }}>{para}</p>
+                  ))
+                : <div className="text-sm leading-loose" style={{ color: '#333', fontWeight: 300 }} dangerouslySetInnerHTML={{ __html: selectedPost.body }} />
+              }
+            </div>
+            <div className="mt-12 pt-8" style={{ borderTop: `1px solid ${GRAY}` }}>
+              <button
+                onClick={() => { setPage('blog'); window.scrollTo(0,0) }}
+                className="inline-flex items-center gap-2 text-xs px-6 py-3 border transition-all duration-300"
+                style={{ borderColor: GOLD, color: GOLD, background: 'none', cursor: 'pointer' }}
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = GOLD; (e.currentTarget as HTMLButtonElement).style.color = NAVY }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'none'; (e.currentTarget as HTMLButtonElement).style.color = GOLD }}
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M10 6H2M5 3L2 6l3 3" stroke="currentColor" strokeWidth="1.2"/></svg>
+                ブログ一覧へ戻る
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {page === 'home' && <>
       {/* HERO */}
       <section className="relative min-h-screen flex items-end overflow-hidden">
-        <img
-          src="https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fres.cloudinary.com%2Fhlmgcqgq%2Fimage%2Fupload%2Ff_auto%2Cq_auto%2Fimage0_rjdt3v&data=05%7C02%7C%7Cc78f27792b0942f7b88c08defcf28f24%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C639226315867285052%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=x1SBxyS8x1sPGCBgs8OL1%2F9poaVb4GXfFszXt2Bsck0%3D&reserved=0"
-          className="absolute inset-0 w-full h-full object-cover hero-bg-zoom"
-          alt="OSR"
-        />
+<video autoPlay
+  muted
+  loop
+  playsInline
+  className="absolute inset-0- w-full h-full　object-cover"
+  >
+<source
+  src="https://res.cloudinary.com/xnqcsfha/video/upload/v1788769302/リフォームHp動画.mov"
+  type="video/mp4"
+/>
+
+  
+  </video>
+
+        
 
         <div
           className="absolute inset-0"
@@ -1341,9 +1618,9 @@ const worksReveal = useReveal(0.15)
 
 <div
   key={s.no}
-  className={`p-8 service-card-reveal ${
-    servicesReveal.visible ? "show" : ""
-  }`}
+  className="p-8" 
+    
+
   style={{
     background: NAVY2,
     animationDelay: `${index * 0.25}s`,
@@ -1351,7 +1628,7 @@ const worksReveal = useReveal(0.15)
 >
                 
                   <img
-                    src={s.image}
+                    src={s.image || undefined}
                     className="w-full h-40 object-cover mb-5 service-card-image"
                     alt={s.title}
                   />
@@ -1450,7 +1727,7 @@ const worksReveal = useReveal(0.15)
       </p>
 
       <img
-        src={w.before}
+        src={w.before || undefined}
         className="w-full aspect-[4/3] object-cover"
         alt="BEFORE"
       />
@@ -1470,7 +1747,7 @@ const worksReveal = useReveal(0.15)
       </p>
 
       <img
-        src={w.after}
+        src={w.after || undefined}
         className="w-full aspect-[4/3] object-cover"
         alt="AFTER"
       />
@@ -1624,11 +1901,15 @@ const worksReveal = useReveal(0.15)
       </section>
 
       {/* PHILOSOPHY */}
-      <section
-        id="philosophy"
-        className="py-24 px-6"
-        style={{ background: OFF }}
-      >
+<section
+  id="philosophy"
+  ref={philosophyReveal.ref}
+  className={`py-24 px-6 ${philosophyReveal.visible ? "is-active" : ""}`}
+  style={{ background: OFF }}
+>
+
+
+      
         <div className="max-w-7xl mx-auto">
           <SectionHead
             en="PHILOSOPHY"
@@ -1652,7 +1933,7 @@ const worksReveal = useReveal(0.15)
               </h3>
             </div>
 
-            <div className="philosophy-card philosophy-right p-8 border">
+            <div className="philosophy-card philosophy-right p-8 border" >
               <p
                 className="text-xs mb-4"
                 style={{ color: GOLD }}
@@ -2011,7 +2292,10 @@ const worksReveal = useReveal(0.15)
       {/* AREA */}
       <section
         id="area"
-        className="py-24"
+        ref={areaReveal.ref}
+
+className={`py-24 ${areaReveal.visible ? "is-active" : ""}`}
+        
         style={{ background: OFF }}
       >
         <div className="max-w-7xl mx-auto px-6">
@@ -2065,7 +2349,7 @@ const worksReveal = useReveal(0.15)
                 ['所在地', '埼玉県春日部市豊町6丁目1-2MOTOパラダイスビル'],
                 ['TEL', '048-633-4952'],
                ['営業時間','8時～18時'],
-                ['建設業許可', '埼玉県知事許可(般-8)第79355号'],
+                ['建設業許可', '埼玉県知事許可(般-8)第79625号'],
                 ['許可業種',　'とび・土工工事業/解体工事業'],
               ].map(([k, v]) => (
                 <tr
@@ -2125,6 +2409,8 @@ const worksReveal = useReveal(0.15)
           
         </div>
       </section>
+
+      {/* end page === 'home' */}</>}
 
       {/* FOOTER */}
       <footer
