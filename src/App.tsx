@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-
+import companyLogo from './company-logo.png';
 import image6 from './image6.jpeg'
 import image7 from './image7.jpeg'
 import image0 from './image0.png'
@@ -15,6 +15,10 @@ import after1 from './image11.jpg'
 import after2 from './image31.jpeg'
 import before4 from './image30.jpeg'
 import areaMap from "./area-map.png";
+import messageImage from "./president-message.jpg"; 
+import signageImage from "./signage.png";
+import juryoTobiImage from "./juryo-tobi.png";
+import recruitMove from "./move2.mp4";
 const MICROCMS_URL = 'https://osr.microcms.io/api/v1/blogs';
   const MICROCMS_API_KEY = '2rdpntmoIdpoM207ArHKLMWMUx7Bl6aim2O8'
 const NAVY = '#0d1f35'
@@ -1126,6 +1130,7 @@ export default function App() {
   const [page, setPage] = useState<'home' | 'blog' | 'blog-detail'>('home')
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null)
   const [cmsPosts, setCmsPosts] = useState<any[]>([])
+ const [showAllPosts, setShowAllPosts] = useState(false)
   useEffect(() => {
   fetch(MICROCMS_URL, {
     headers: {
@@ -1245,14 +1250,18 @@ setCmsPosts(
       >
         <div className="max-w-7xl mx-auto px-5 lg:px-12 flex items-center justify-between h-16 lg:h-20">
 
+         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <img
-            src="https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fres.cloudinary.com%2Fwngor8ac%2Fimage%2Fupload%2Ff_auto%2Cq_auto%2F435229df-1a79-4dc2-82df-ed1318396242&data=05%7C02%7C%7Cc78f27792b0942f7b88c08defcf28f24%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C639226315867240539%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=SDwUzdTiJ3nKuTxT7pyD2Pb7wSBoEooKvbyJfV18w8Q%3D&reserved=0"
+            src={companyLogo}
             alt="株式会社OSR"
-            className="h-14 lg:h-20 w-auto"
+            style={{ height: "40px", width: "auto" }}
           />
-
+　　　　　<span style={{ color:"white", fontSize: "18px", fontWeight: "bold" }}>
+  株式会社OSR
+</span>
+         </div>
 <nav
-  className="hidden lg:grid grid-cols-5 gap-x-5 gap-y-2 flex-1 mx-6"
+  className="hidden"
   style={{
     position: 'relative',
     zIndex: 10000,
@@ -1266,7 +1275,7 @@ setCmsPosts(
       key={n.href}
       onClick={() => { setPage('blog'); setMenuOpen(false); window.scrollTo(0,0) }}
       className="text-xs whitespace-nowrap text-left"
-      style={{ color: GOLD, cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}
+      style={{ color: WHITE, cursor: 'pointer', background: 'none', border: 'none', padding: 0 }}
     >
       {n.label}
     </button>
@@ -1288,8 +1297,8 @@ setCmsPosts(
            
           </nav>
 
-          <div className="hidden lg:flex flex-col items-end gap-1">
-  <div className="flex items-center gap-2 text-xs">
+          <div className="hidden lg:flex flex-row items-end gap-1">
+  <div className="flex items-center gap-2 text-xs -translate-y-2">
     {[
       ['jp', 'JP'],
       ['en', 'EN'],
@@ -1309,25 +1318,20 @@ setCmsPosts(
       </button>
     ))}
   </div>
-
-  <button
-    type="button"
-    className="text-[11px] px-6 py－2 border transition-all duration-200"
-    style={{
-      color: GOLD2,
-    borderColor: GOLD,
-    background:'transparent',
-      fontWeight: 700,
-    }}      
-    onClick={() => {
-      const target = document.getElementById('contact')
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block:'start' })
-        }
-    }}
-            >
-            お問い合わせ
-  </button>
+<button
+  type="button"
+  onClick={() => setMenuOpen(!menuOpen)}
+  className="text-3xl ml-auto"
+  style={{
+    color: GOLD,
+    background: 'none',
+    border: 'none',
+    cursor: 'pointer',
+  }}
+>
+  ☰
+</button>
+ 
 </div>
 
           <button
@@ -1342,10 +1346,16 @@ setCmsPosts(
         </div>
 
         {menuOpen && (
-          <div
-            className="lg:hidden"
-            style={{ background: NAVY }}
-          >
+<div
+  className="fixed top-[110px] right-[16px] bottom-[20px] w-[320px] shadow-2xl overflow-y-scroll"
+  style={{
+    background: NAVY,
+    zIndex: 10001,
+    border: `1px solid ${GOLD}`,
+    maxHeight: 'calc(100vh - 65px)',
+  }}
+>
+        
             <div className="flex justify-center gap-4 py-4">
               {[
                 ['jp', 'JP'],
@@ -1375,7 +1385,7 @@ setCmsPosts(
                 <button
                   key={n.href}
                   className="block w-full text-left px-6 py-4 border-t text-sm"
-                  style={{ borderColor: BORDER, color: GOLD, background: 'none', border: 'none', borderTop: `1px solid ${BORDER}` }}
+                  style={{ borderColor: BORDER, color: WHITE, background: 'none', border: 'none', borderTop: `1px solid ${BORDER}` }}
                   onClick={() => { setPage('blog'); setMenuOpen(false); window.scrollTo(0,0) }}
                 >
                   {n.label}
@@ -1409,7 +1419,7 @@ setCmsPosts(
               <div className="mt-4 w-12 h-px" style={{ background: `linear-gradient(90deg, ${GOLD}, ${GOLD2})` }} />
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {cmsPosts.map(post => (
+              {cmsPosts.slice(0, showAllPosts ? cmsPosts.length : 6).map(post => (
                 <article
                   key={post.id}
                   className="group cursor-pointer overflow-hidden"
@@ -1438,6 +1448,13 @@ setCmsPosts(
                 </article>
               ))}
             </div>
+            {cmsPosts.length > 6 && !showAllPosts && (
+  <div className="text-center mt-10">
+    <button onClick={() => setShowAllPosts(true)}>
+      もっと見る
+    </button>
+  </div>
+)}
           </div>
         </div>
       )}
@@ -1892,7 +1909,7 @@ setCmsPosts(
   </h2>
 </div>
         <img
-          src="https://res.cloudinary.com/wngor8ac/image/upload/f_auto,q_auto/%E7%A4%BE%E9%95%B7%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8%E6%A8%AA%E9%95%B7"
+          src={messageImage}
           className="message-image w-full h-auto object-contain"
           alt={t.messageTitle}
         />
@@ -2050,7 +2067,7 @@ setCmsPosts(
 
            <div className="flex justify-center md:justify-start">
   <video
-    src="https://ycqwlzupkxiapvcznunc.supabase.co/storage/v1/object/public/osr-renovation/osr-renovation.mp4"
+    src={recruitMove}
     autoPlay
     muted
     loop
@@ -2093,7 +2110,7 @@ setCmsPosts(
               className="business-card group p-8 border overflow-hidden transition-all duration-500 hover:-translate-y-2"
             >
               <img 
-                src="https://res.cloudinary.com/wngor8ac/image/upload/f_auto,q_auto/%E9%87%8D%E9%87%8F%E9%B3%B6"
+                src={juryoTobiImage}
                 alt="重量鳶事業"
                 className="w-full h-55 object-cover mb-5 transition-transform duraction-700 group-hover:scale-110"
                 />
@@ -2130,7 +2147,7 @@ setCmsPosts(
               className="business-card group p-8 border overflow-hidden transition-all duration-500 hover:-translate-y-2"
             >
               <img
-                src="https://res.cloudinary.com/wngor8ac/image/upload/f_auto,q_auto/d829475d-22f1-490b-8c4a-2b13ede5bb18"
+                src={signageImage}
              alt="デジタルサイネージ事業"
                 className="w-full h-55 object-cover mb-5 transition-transform duration-700 group-hover:scale-110"
                 />
@@ -2422,7 +2439,7 @@ className={`py-24 ${areaReveal.visible ? "is-active" : ""}`}
         <div className="max-w-7xl mx-auto px-6">
 
           <img
-            src="https://res.cloudinary.com/wngor8ac/image/upload/f_auto,q_auto/435229df-1a79-4dc2-82df-ed1318396242"
+            src={companyLogo}
             className="h-16 mb-5"
             alt="OSR"
           />
