@@ -305,7 +305,7 @@ if (response.ok) {
             className="w-full h-full object-cover"
             style={{ transform: 'scale(1.05)', transition: 'transform 8s ease', ...(heroVisible ? { transform: 'scale(1)' } : {}) }}
           />
-          <div className="absolute inset-0" style={{ background: `linear-gradient(to right, rgba(13,31,53,0.92) 0%, rgba(13,31,53,0.7) 55%, rgba(13,31,53,0.3) 100%)` }} />
+          <div className="absolute inset-0" style={{ background: `linear-gradient(to right, rgba(13,31,53, .92) 0%, rgba(13,31,53, 4) 55%, rgba(13,31,53,0.3) 100%)` }} />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(13,31,53,0.6) 0%, transparent 50%)' }} />
         </div>
 
