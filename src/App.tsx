@@ -1511,7 +1511,10 @@ setCmsPosts(
   loop
   playsInline
   className="absolute inset-0- w-full h-full　object-cover"
-  style={{ objectPosition: "50％ 20％" }}
+  style={{
+    objectPosition: "50％ 20％",
+  transform: "scale(1.18) translateY(-8%)"
+  }}
   >
 <source
   src="https://res.cloudinary.com/xnqcsfha/video/upload/v1788769302/リフォームHp動画.mov"
