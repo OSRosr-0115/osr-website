@@ -1510,7 +1510,7 @@ setCmsPosts(
   muted
   loop
   playsInline
-  className="absolute inset-0- w-full h-full　object-cover"
+  className="absolute inset-0- w-full h-full　object-cover object-[50％_30％] md:object-center"
   >
 <source
   src="https://res.cloudinary.com/xnqcsfha/video/upload/v1788769302/リフォームHp動画.mov"
