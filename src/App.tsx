@@ -1527,7 +1527,7 @@ setCmsPosts(
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to right, rgba(13,31,53,.92), rgba(13,31,53,.4))',
+              'linear-gradient(to right, rgba(13,31,53,.65), rgba(13,31,53,.15))',
           }}
         />
 
