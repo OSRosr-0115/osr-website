@@ -1216,10 +1216,10 @@ export default function App() {
       </header>
 
       {/* HERO */}
-      <section className="relative min-h-screen flex items-end overflow-hidden">
+      <section className="relative min-h-screen flex items-start md:items-end overflow-hidden">
         <img
           src="https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fres.cloudinary.com%2Fhlmgcqgq%2Fimage%2Fupload%2Ff_auto%2Cq_auto%2Fimage0_rjdt3v&data=05%7C02%7C%7Cc78f27792b0942f7b88c08defcf28f24%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C639226315867285052%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=x1SBxyS8x1sPGCBgs8OL1%2F9poaVb4GXfFszXt2Bsck0%3D&reserved=0"
-          className="absolute inset-0 w-full h-full object-cover object-[50％_30％] md:object-center "
+          className="absolute inset-0 w-full h-full object-cover object-[50％_15％] md:object-center "
           alt="OSR"
         />
 
