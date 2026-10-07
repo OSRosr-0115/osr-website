@@ -1510,10 +1510,10 @@ setCmsPosts(
   muted
   loop
   playsInline
-  className="absolute inset-0- w-full h-full　object-cover object object-[50%_65%] lg:object-[50%_20%]"
+  className="absolute inset-0- w-full h-full　object-cover object-[50%_65%] scale-[1.4] lg:object-[50%-20%] lg:scale-[1.18]"
   style={{
    
-  transform: "scale(1.18) translateY(-8%)"
+ 
   }}
   >
 <source
