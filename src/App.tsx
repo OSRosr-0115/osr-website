@@ -1505,14 +1505,14 @@ setCmsPosts(
 
       {page === 'home' && <>
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center lg:items-end overflow-hidden">
+      <section className="relative min-h-screen flex items-end overflow-hidden">
 <video autoPlay
   muted
   loop
   playsInline
-  className="absolute inset-0- w-full h-full　object-cover"
+  className="absolute inset-0- w-full h-full　object-cover object object-[50%_65%] lg:object-[50%_20%]"
   style={{
-    objectPosition: "50％ 20％",
+   
   transform: "scale(1.18) translateY(-8%)"
   }}
   >
