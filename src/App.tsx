@@ -1505,7 +1505,7 @@ setCmsPosts(
 
       {page === 'home' && <>
       {/* HERO */}
-      <section className="relative min-h-screen flex items-end overflow-hidden">
+      <section className="relative min-h-screen flex items-center lg:items-end overflow-hidden">
 <video autoPlay
   muted
   loop
