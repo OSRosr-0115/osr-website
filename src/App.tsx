@@ -1510,11 +1510,8 @@ setCmsPosts(
   muted
   loop
   playsInline
-  className="absolute inset-0- w-full h-full　object-cover object-[50%_65%] scale-[1.4] lg:object-[50%-20%] lg:scale-[1.18]"
-  style={{
-   
+  className="absolute inset-0- w-full h-full　object-cover object-center scale-[1.75] -translate-y-[15%] lg:object-[50%-20%] lg:scale-[1.18] lg:-translate-y-[8%]"
  
-  }}
   >
 <source
   src="https://res.cloudinary.com/xnqcsfha/video/upload/v1788769302/リフォームHp動画.mov"
