@@ -1510,7 +1510,7 @@ setCmsPosts(
   muted
   loop
   playsInline
-  className="absolute inset-0- w-full h-full　object-cover object[50%-80%] scale-[1.75] lg:object-[50%_20%] lg:scale-[1.18] lg:-translate-y-[8%]"
+  className="absolute inset-0- w-full h-full　object-cover object[50%-100%] scale-[2.2] -translate-y-[18%] lg:object-[50%_20%] lg:scale-[1.18] lg:-translate-y-[8%]"
  
   >
 <source
