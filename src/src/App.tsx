@@ -1080,7 +1080,7 @@ export default function App() {
             : '1px solid transparent',
         }}
       >
-        <div className="max-w-7xl mx-auto px-5 lg:px-12 flex items-center justify-between h-14 lg:h-16">
+        <div className="max-w-7xl mx-auto px-5 lg:px-12 flex items-center justify-between h-10 lg:h-10">
 
           <img
             src="https://na01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fres.cloudinary.com%2Fwngor8ac%2Fimage%2Fupload%2Ff_auto%2Cq_auto%2F435229df-1a79-4dc2-82df-ed1318396242&data=05%7C02%7C%7Cc78f27792b0942f7b88c08defcf28f24%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C639226315867240539%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=SDwUzdTiJ3nKuTxT7pyD2Pb7wSBoEooKvbyJfV18w8Q%3D&reserved=0"
