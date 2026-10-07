@@ -1248,7 +1248,7 @@ setCmsPosts(
             : '1px solid transparent',
         }}
       >
-        <div className="max-w-7xl mx-auto px-5 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+        <div className="max-w-7xl mx-auto px-5 lg:px-12 flex items-center justify-between h-12 lg:h-14">
 
          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <img
