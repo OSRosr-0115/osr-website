@@ -898,6 +898,12 @@ const WHY_DATA = {
 
 const NEWS_DATA = {
   jp: [
+     {
+      date: '2026.10.05',
+      cat: 'メディア掲載',
+      title: '「職人BIZサーチ」に代表・大崎純のインタビュー記事が掲載されました。',
+      link: 'https://syokuninbiz.net/2026/10/02/048-633-4952/',
+    },
    {
       date: '2026.09.22',
       cat: 'メディア掲載',
