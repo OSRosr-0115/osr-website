@@ -169,7 +169,7 @@ const TEXT = {
 
     servicesTitle: 'サービス紹介',
     servicesLead:[
-      '原状回復からリフォーム、内装・外装、ハウスクリーニングまで。',
+      'からリフォーム、内装・外装、ハウスクリーニングまで。',
     '建物に関するさまざまなご要望に、確かな施工力と柔軟な対応力でお応えします。',
 ],
     worksTitle: '施工実績',
@@ -1506,21 +1506,26 @@ setCmsPosts(
       {page === 'home' && <>
       {/* HERO */}
       <section className="relative min-h-screen flex items-end overflow-hidden">
-<video autoPlay
+
+<video
+  autoPlay
   muted
   loop
   playsInline
-  className="absolute inset-0- w-full h-full　object-cover object[50%-100%] scale-[2.8] -translate-y-[24%] lg:object-[50%_20%] lg:scale-[1.18] lg:-translate-y-[8%]"
- 
-  >
-<source
-  src="https://res.cloudinary.com/xnqcsfha/video/upload/v1788769302/リフォームHp動画.mov"
-  type="video/mp4"
-/>
+  className="hidden lg:block absolute inset-0 w-full h-full object-cover"
+>
+  <source src="/リフォーム.mp4" type="video/mp4" />
+</video>
 
-  
-  </video>
-
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="block lg:hidden absolute inset-0 w-full h-full object-cover"
+>
+  <source src="/リフォームスマホ.mp4" type="video/mp4" />
+</video>
         
 
         <div
