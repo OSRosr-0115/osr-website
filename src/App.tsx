@@ -1124,6 +1124,7 @@ const BLOG_POSTS: BlogPost[] = [
 ]
 
 export default function App() {
+  const [visibleNews, setVisibleNews] = useState(6);
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [language, setLanguage] = useState<Lang>('jp')
@@ -1994,7 +1995,7 @@ setCmsPosts(
     borderBottom: `1px solid ${GRAY}`,
   }}
 >
-  {NEWS_DATA[language].map((n, i) => (
+  {NEWS_DATA[language].slice((0. visibleNews).map((n, i) => (
     <a
       key={`${n.date}-${i}`}
       href={n.link}
@@ -2029,6 +2030,17 @@ setCmsPosts(
       </span>
     </a>
   ))}
+{visibleNews < NEWS_DATA[language].length && (
+  <div className="text-center mt-8">
+    <button
+      onClick={() => setVisibleNews((prev) => prev + 6)}
+      className="px-8 py-3 border border-[#c9a227] text-[#c9a227] hover:bg-[#c9a227] hover:text-white transition"
+    >
+      もっと見る
+    </button>
+  </div>
+)}
+           
 </div>
         </div>
       </section>
