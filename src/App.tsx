@@ -1360,7 +1360,7 @@ setCmsPosts(
     background: NAVY,
     zIndex: 10001,
     border: `1px solid ${GOLD}`,
-    maxHeight: 'calc(100vh - 65px)',
+    maxHeight: 'calc(100vh - 130px)',
   }}
 >
         
