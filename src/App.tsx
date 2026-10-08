@@ -1995,7 +1995,7 @@ setCmsPosts(
     borderBottom: `1px solid ${GRAY}`,
   }}
 >
-  {NEWS_DATA[language].slice((0. visibleNews).map((n, i) => (
+  {NEWS_DATA[language].slice(0. visibleNews).map((n, i) => (
     <a
       key={`${n.date}-${i}`}
       href={n.link}
