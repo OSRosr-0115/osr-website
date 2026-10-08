@@ -1197,7 +1197,8 @@ setCmsPosts(
     { label: t.nav[7], href: '#recruit' },
     { label: t.nav[8], href: '#business' },
     { label: t.nav[9], href: '#area' },
-    { label: t.nav[10], href: '#about' },
+    { label: t.nav[10], href: '#contact'},
+    { label: t.nav[11], href: '#about' },
    
   ]
 
